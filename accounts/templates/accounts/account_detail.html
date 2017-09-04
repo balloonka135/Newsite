@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div id="content-container" class="container p-none">
+		<div id="ad-container">
+			<div id="gi-container" class="ad-container">
+				{% include 'accounts/account_item_view.html' %}
+			</div>
+		</div>
+		{# List Contacts #}
+		<div id="cd-container" class="ad-container">
+    		<div class="ad-headers">
+        		<h4 class="ad-mh m-none">Contacts</h4>
+    		</div>
+    		<div id="cd-body" class="row">
+        		<table id="cd-table" class="table table-hover">
+            		<tbody>
+               			<tr></tr>
+               			{% for contact in contacts %}
+               				{% include 'contacts/contact_item_view.html' %}
+               			{% endfor %}	
+               		</tbody>
+        		</table>
+        		{# New Contact Link #}
+       			<a id="new-contact" class="btn btn-link" 
+            href="{% url 'contacts:contact_new' %}?account={{ account.id }}">New Contact</a>
+    		</div>
+		</div>
+        {# List Communications #}
+        <div id="co-container" class="ad-container">
+            <div class="ad-headers">
+                <h4 class="ad-mh m-none">Communications</h4>
+            </div>
+        <div id="co-body" class="ad-container">
+            {# Communications Item Form #}
+            <div id="co-form-wrapper">
+                {% include 'communications/comm_item_form.html' %}
+            </div>
+            {# List of Communications #}
+            <ul id="co-list" class="strip-list col-md-12 p-none">
+                {% for comm in communications %}
+                    {% include 'communications/comm_item_view.html' %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+	</div>
+{% endblock content %}
